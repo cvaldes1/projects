@@ -1,0 +1,30 @@
+clear all, close all, clc
+
+% Parameters
+a=1;
+b=13;
+c=16;
+
+L           = linspace(0, 0.7, 1000);   % Units of labor
+Q           = (a*L + b*L.^2 - c*L.^3);  % Total product 
+part_Q      = a + 2*b.*L - c*3*L.^2;    % Marginal product
+avg_Q       = (a*L + b*L.^2 - c*L.^3)./L;     
+
+% PLOT
+subplot(211)
+plot(L,Q)
+%title('Total product')
+subplot(212)
+plot(L,part_Q)
+hold on
+plot(L, avg_Q)
+%title('Marginal and Average product')
+%legend('Marginal product','Average product') 
+hold on
+zero_line   = linspace(0,0,1000);
+plot(L, zero_line, '--')
+ 
+L_max = fminsearch(@funzione, 0)
+L_zero_marg = fzero(@funzione2,1)
+L_equal = fsolve(@funzione3,[1,1])
+
